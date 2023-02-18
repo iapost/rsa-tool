@@ -1,12 +1,13 @@
 #include "rsa.h"
 
-/*
+/**
  * Sieve of Eratosthenes Algorithm
+ * https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+ * 
+ * @param limit A limit
+ * @param primes_sz The size of the generated primes list. Empty argument used as ret val
  *
- * arg0: A limit
- * arg1: The size of the generated primes list. Empty argument used as ret val
- *
- * ret:  The prime numbers that are less or equal to the limit
+ * @return The prime numbers that are less or equal to the limit
  */
 size_t* sieve_of_eratosthenes(size_t limit, size_t *primes_sz){
 	char *table=(char *)malloc(limit-1);
@@ -46,13 +47,13 @@ size_t* sieve_of_eratosthenes(size_t limit, size_t *primes_sz){
 }
 
 
-/*
+/**
  * Greatest Common Divisor
  *
- * arg0: first number
- * arg1: second number
+ * @param a The first number
+ * @param b The second number
  *
- * ret: the GCD
+ * @return The GCD of the two numbers
  */
 size_t gcd(size_t a, size_t b){
     while(a!=b){
@@ -66,15 +67,15 @@ size_t gcd(size_t a, size_t b){
 }
 
 
-/*
+/**
  * Chooses 'e' where 
  *     1 < e < fi(n) AND gcd(e, fi(n)) == 1
  *
- * arg0: table with primes (from sieve_of_eratosthenes() )
- * arg1: size of table with primes
- * arg2: fi(n)
+ * @param primes table with primes (from sieve_of_eratosthenes() )
+ * @param primeLen size of table with primes
+ * @param fin fi(n)
  *
- * ret: 'e'
+ * @return The chosen 'e'
  */
 size_t choose_e(size_t *primes, size_t primeLen, size_t fin){
     //choose highest number in the table that satisfies the conditions
@@ -94,14 +95,14 @@ size_t choose_e(size_t *primes, size_t primeLen, size_t fin){
 }
 
 
-/*
+/**
  * Calculates the modular inverse x so that ax=1(modm)
  * Uses Extended Euclidean Algorithm
  *
- * arg0: a
- * arg1: m
+ * @param a a
+ * @param m m
  *
- * ret: x
+ * @return x
  */
 size_t mod_inverse(size_t a, size_t m){
     size_t originalm=m;
@@ -123,7 +124,7 @@ size_t mod_inverse(size_t a, size_t m){
 }
 
 
-/*
+/**
  * Generates an RSA key pair and saves
  * each key in a different file
  */
@@ -157,12 +158,12 @@ void rsa_keygen(void){
 }
 
 
-/*
+/**
  * Encrypts an input file and dumps the ciphertext into an output file
  *
- * arg0: path to input file
- * arg1: path to output file
- * arg2: path to key file
+ * @param input_file path to input file
+ * @param output_file path to output file
+ * @param key_file path to key file
  */
 void rsa_encrypt(char *input_file, char *output_file, char *key_file){
     //read message from input file
@@ -221,12 +222,12 @@ void rsa_encrypt(char *input_file, char *output_file, char *key_file){
 }
 
 
-/*
+/**
  * Decrypts an input file and dumps the plaintext into an output file
  *
- * arg0: path to input file
- * arg1: path to output file
- * arg2: path to key file
+ * @param input_file path to input file
+ * @param output_file path to output file
+ * @param key_file path to key file
  */
 void rsa_decrypt(char *input_file, char *output_file, char *key_file){
     //read cipher from input file

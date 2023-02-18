@@ -1,3 +1,5 @@
+/** @file main.c */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +7,7 @@
 
 #include "rsa.h"
 
-/*
+/**
  * Prints the usage message
  */
 void usage(void){
@@ -29,13 +31,13 @@ void usage(void){
 }
 
 
-/*
+/**
  * Checks the validity of the arguments
  *
- * arg0: path to input file
- * arg1: path to output file
- * arg2: path to key file
- * arg3: operation mode
+ * @param input_file path to input file
+ * @param output_file path to output file
+ * @param key_file path to key file
+ * @param op_mode operation mode
  */
 void check_args(char *input_file, char *output_file, char *key_file, int op_mode){
 	if ((!input_file) && (op_mode != 2)) {
@@ -60,7 +62,7 @@ void check_args(char *input_file, char *output_file, char *key_file, int op_mode
 }
 
 
-/*
+/**
  * Performs RSA key generation and stores the keys into 2 files
  *
  * Encrypts the input file and stores the ciphertext to the output file
